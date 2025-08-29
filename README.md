@@ -1,58 +1,97 @@
-# 📊 AI-Powered Financial Analytics Platform
+# 💰 Financial Analysis and Investment Platform
 
-## 🌟 Project Overview
+## Project Overview
 
-This is a portfolio project for a financial analytics platform designed for market observation and data analysis. The primary goal is to provide a comprehensive, risk-free environment for users to learn about the stock market, analyze financial data, and gain data-driven insights. The platform's unique value is its integration of artificial intelligence for market forecasting and natural language processing for news analysis.
+This is a comprehensive financial analysis and investment platform that empowers users with data-driven insights and a risk-free environment to learn about the US stock market. The project is a full-stack web application that integrates with various financial APIs to provide real-time data, historical performance, and advanced analytics.
 
-## 🚀 Key Features
+## Key Features
 
-* **Real-Time & Historical Data:** Access up-to-the-minute stock prices, as well as extensive historical data for tracking and analysis.
-* **AI-Powered Forecasting:** Utilize a machine learning model to generate stock price predictions and gain data-driven insights.
-* **NLP News Analysis:** An NLP system summarizes financial news articles and provides sentiment analysis to help users understand market sentiment at a glance.
-* **Comprehensive Analytics:** View detailed charts, key financial ratios, and performance metrics for individual stocks and portfolios.
+### Stock & ETF Tracker
+Search for any US-listed stock or ETF to view its real-time price, historical performance, and key metrics.
 
-## 🛠️ Technology Stack
+### Simulated Portfolio
+A dashboard where users can manage a virtual portfolio, track their simulated gains and losses, and understand the impact of their investment decisions without financial risk.
 
-* **Frontend:** HTML, CSS, JavaScript (or a modern framework) for a dynamic and responsive user interface.
-* **Backend:** Python (e.g., Flask or FastAPI) to handle data processing, API requests, and business logic.
-* **Data Science:** Libraries such as `Pandas`, `NumPy`, and `Scikit-learn` for data manipulation and model building. `TensorFlow` or `PyTorch` for the AI and NLP models.
-* **APIs:** Integrates with third-party financial data APIs to fetch real-time and historical market information.
+### Fund Analysis
+A section dedicated to comparing different investment funds, including mutual funds and ETFs. It displays key metrics like expense ratios and historical returns. For hedge funds, it provides a researched historical overview due to data limitations.
 
-## ⚙️ Setup and Installation
+### Financial Modeling & Forecasting
+An automated tool that generates a company's financial statements (Income Statement, Balance Sheet, Cash Flow Statement) from a single ticker symbol. It also includes a basic machine learning model for price forecasting.
 
-Follow these steps to get a local copy of the project up and running:
+### AI-Powered News & Sentiment
+An integrated NLP system that fetches the latest financial news for a stock, summarizes the articles, and provides a sentiment score (positive, neutral, or negative) to help users gauge market mood.
+
+## Technical Stack
+
+- **Backend:** Python (Flask)
+- **Frontend:** HTML, CSS, JavaScript (with Chart.js for data visualization)
+- **Database:** SQLite
+- **APIs:**
+  - **Financial Data:** Alpha Vantage, Finnhub
+  - **Financial Statements:** Financial Modeling Prep (FMP)
+  - **Government Filings:** SEC EDGAR database API (for advanced features)
+
+## Getting Started
+
+Follow these steps to get a local copy of the project up and running.
+
+### Prerequisites
+
+- Python 3.8+
+- pip (Python package installer)
+
+### Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/your-username/your-repo-name.git
    cd your-repo-name
    ```
 
-2. **Set up a virtual environment** (recommended):
+2. **Create a virtual environment:**
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. **Install dependencies:**
+3. **Install the required Python packages:**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Configure API Keys:**
-   * Create a `.env` file in the root directory.
-   * Add your financial data API key(s) as environment variables.
-   * Example: `FINANCIAL_API_KEY=your_api_key_here`
+4. **Configure your API keys:**
+   - Create a `.env` file in the root directory
+   - Add your API keys from Finnhub, Alpha Vantage, etc., like this:
+   ```env
+   FINNHUB_API_KEY=your_key_here
+   ALPHA_VANTAGE_API_KEY=your_key_here
+   ```
 
 5. **Run the application:**
-   * Start the backend server.
-   * Start the frontend server.
-   * The specific commands will depend on the backend and frontend frameworks used.
+   ```bash
+   flask run
+   ```
 
-## 🤝 How to Contribute
+Your application will now be running at `http://127.0.0.1:5000/`.
 
-Contributions are welcome! If you have suggestions for new features, bug fixes, or improvements, please feel free to open an issue or submit a pull request on GitHub.
+## Data Resources & Limitations
 
-## 📄 License
+### Stock & ETF Data
+All data is sourced from reliable financial APIs with free access tiers.
 
-This project is licensed under the MIT License - see the `LICENSE` file for details.
+### Mutual Funds
+Data is sourced from public financial websites and is limited to publicly available information.
+
+### Hedge Funds
+Due to data being proprietary, this section is a static analysis of historical performance based on publicly available filings and research. It does not provide real-time data.
+
+### F&O (Futures & Options)
+Due to the high cost of real-time options data, this section is a conceptual demonstration.
+
+## Contributing
+
+This is a portfolio project, but feel free to fork the repository, explore the code, and submit any bug reports.
+
+## License
+
+This project is licensed under the MIT License.

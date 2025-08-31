@@ -10,7 +10,7 @@ def getstockSymbols(exchange="US"):
     try:
         exchange=exchange.upper()
         symbols=finhubbClient.stock_symbols(exchange=exchange)
-        print(symbols)
+        
     except Exception as e:
         raise Exception(e)
     
@@ -33,12 +33,17 @@ def getCompanyBasicFinances(symbol,metric="all"):
     except Exception as e:
         raise Exception(e)
         
+def getstockQuote(symbol):
+    """
+    get realtime quote of a stock
+    use websocket for streaming data 
+    """
+    quote=finhubbClient.quote(symbol)
+    return quote
 
     
 if __name__=="__main__":
-    details=getCompanyBasicFinances(symbol="AAPL",metric='52WeekHigh')
-    print("basic details of {} ".format("AAPL"))
-    # print("printing stock symbols of US Exchange")
-    # getstockSymbols("US")
-    # print("printing stock symbols of INDIA Exchange")
-    # getstockSymbols("NS")
+    # details=getCompanyBasicFinances(symbol="AAPL",metric='52WeekHigh')
+    
+    quote=getstockQuote("AAPL")
+    print("quote:", quote)

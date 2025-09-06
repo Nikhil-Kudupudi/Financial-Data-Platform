@@ -1,6 +1,16 @@
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'financeDataPlatform.settings')
+import django
+django.setup()
+
 from stocks.mainApp import app 
 from stocks.mainApp import finnhub_client
-import json 
+from datetime import datetime
+from stocks.models import StockQuote
+import os
+import json
+
+
 finhubbClient=finnhub_client
 
 def getstockSymbols(exchange="US"):
@@ -39,11 +49,26 @@ def getstockQuote(symbol):
     use websocket for streaming data 
     """
     quote=finhubbClient.quote(symbol)
+
+    # insert data to db
+    stockquote={
+    "current_price":quote["c"],
+    "change_price":quote.get("d",0),
+    "change_percent":quote.get("dp",0),
+    "high_price_day":quote.get("h",0),
+    "low_price_day":quote.get("l",0),
+    "open_price_day":quote.get("o",0),
+    "previous_close":quote.get("pc",0),
+    "stocktime":datetime.fromtimestamp(quote.get("t",0)),
+    "stock_symbol":symbol
+    }
+    existingstockData=StockQuote.objects.update_or_create(stock_symbol=symbol,defaults=stockquote)
+    # it is giving timely basis stock of curretn day so no need to save show based on hit
     return quote
 
     
 if __name__=="__main__":
     # details=getCompanyBasicFinances(symbol="AAPL",metric='52WeekHigh')
     
-    quote=getstockQuote("AAPL")
+    quote=getstockQuote("IBM")
     print("quote:", quote)

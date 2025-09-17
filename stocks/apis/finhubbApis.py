@@ -20,7 +20,18 @@ def getstockSymbols(exchange="US"):
     try:
         exchange=exchange.upper()
         symbols=finhubbClient.stock_symbols(exchange=exchange)
+        if symbols:
+            formattedsymbols=[]
+            for stock in symbols:
+                detail={
+                    stock["symbol"]:stock["description"]
+                }
+                formattedsymbols.append(detail)
         
+        with open("symbols.json","w") as file:
+            json.dump(formattedsymbols,file)
+        
+        return symbols
     except Exception as e:
         raise Exception(e)
     
@@ -64,11 +75,10 @@ def getstockQuote(symbol):
     }
     existingstockData=StockQuote.objects.update_or_create(stock_symbol=symbol,defaults=stockquote)
     # it is giving timely basis stock of curretn day so no need to save show based on hit
-    return quote
+    return 
 
     
-if __name__=="__main__":
-    # details=getCompanyBasicFinances(symbol="AAPL",metric='52WeekHigh')
-    
-    quote=getstockQuote("IBM")
-    print("quote:", quote)
+if __name__=="__main__":    
+    # quote=getstockQuote("IBM")
+    # print("quote:", quote)
+    symbols=getstockSymbols()
